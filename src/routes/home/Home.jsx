@@ -1,5 +1,4 @@
-import "./App.css";
-import Directory from "../components/directory/Directory";
+import Directory from "../../components/directory/Directory";
 function Home() {
   const categories = [
     {
