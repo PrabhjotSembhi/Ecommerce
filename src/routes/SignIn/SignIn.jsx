@@ -10,7 +10,7 @@ const SignIn = () => {
   
  
   return (
-    <div>
+    <div className="signinParent">
       <h1>Sign In</h1>
       <SignInForm/>
       <SignUpForm/>
