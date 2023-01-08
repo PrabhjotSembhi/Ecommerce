@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import './sign-up-container.scss';
 
 import {
@@ -22,7 +22,6 @@ const SignUpForm = () => {
   const [formFeilds, setFormFeilds] = useState(defaultFormFeilds);
   const { displayName, email, password, confirmPassword } = formFeilds;
 
-  const {setCurrentUser} = useContext(UserContext);
 
   const resetFeilds = () => {
     setFormFeilds(defaultFormFeilds);
@@ -42,7 +41,6 @@ const SignUpForm = () => {
 
         console.log(user);
 
-        setCurrentUser(user)
 
         resetFeilds();
       } catch (error) {

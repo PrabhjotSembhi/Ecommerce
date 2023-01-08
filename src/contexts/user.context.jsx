@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect} from "react";
-import { onAuthStateChangedListner } from "../utils/firebase/firebase";
+import { onAuthStateChangedListner,createUserDocumentFromAuth } from "../utils/firebase/firebase";
 
 export const UserContext = createContext({
 
@@ -16,7 +16,11 @@ export const UserProvider = ({children}) => {
 
     useEffect(() =>{
         const unsubscribe = onAuthStateChangedListner((user) => {
-            console.log(user)
+            if (user) {
+                createUserDocumentFromAuth(user);
+
+            }
+          setCurrentUser(user)
         })
         return unsubscribe
 
