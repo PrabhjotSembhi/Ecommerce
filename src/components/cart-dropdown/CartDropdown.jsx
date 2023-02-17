@@ -1,14 +1,24 @@
+import { useContext } from 'react'
+import { CartDropdownContext } from '../../contexts/cartDropdown.context'
 import Button from '../button/Button'
 import './cart-dropdown.styles.scss'
 
 const CartDropdown = () => {
-  return (
+  const {cartOpened} = useContext(CartDropdownContext)
 
-    <div className='cart-dropdown-container'>
-        <div className="cart-items">
-            <Button>Go to checkout</Button>
-        </div>
-    </div>
+  return (
+    <>
+    {
+      cartOpened ? 
+     <div className='cart-dropdown-container'>
+      <div className="cart-items">
+          <Button>Go to checkout</Button>
+      </div>
+  </div>:''
+  
+    }
+    </>
+  
   )
 }
 
