@@ -1,17 +1,18 @@
 import { createContext, useState } from "react";
 
 export const CartDropdownContext = createContext({
-    cartOpened:false
+    cartOpened:false,
+    setCartOpened: () => {}
 })
 
 export const CardDropdownProvider = ({children}) =>{
     const [cartOpened, setCartOpened] = useState(false)
-    const value = { cartOpened };
+    const value = { cartOpened, setCartOpened};
 
     return(
-        <CardDropdownProvider value={value}>
+        <CartDropdownContext.Provider value={value}>
             {children}
-        </CardDropdownProvider>
+        </CartDropdownContext.Provider>
     )
 
 }

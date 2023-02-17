@@ -12,13 +12,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <CardDropdownProvider>
         <UserProvider>
           <ProductsProvider>
+      <CardDropdownProvider>
             <App />
+      </CardDropdownProvider>
           </ProductsProvider>
         </UserProvider>
-      </CardDropdownProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

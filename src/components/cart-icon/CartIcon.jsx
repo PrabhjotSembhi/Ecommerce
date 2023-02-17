@@ -11,9 +11,7 @@ const {cartOpened, setCartOpened} = useContext(CartDropdownContext)
     <div className='cart-icon-container'>
         <ShopingIcon className='shopping-icon' onClick={() => {setCartOpened(!cartOpened)}}/>
         <span className='item-count'>10</span>
-     {
-      cartOpened?<p>Hello</p>:<p>no</p>
-     }
+    
     </div>
   )
 }
