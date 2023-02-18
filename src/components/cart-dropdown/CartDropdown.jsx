@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import Button from '../button/Button'
 import './cart-dropdown.styles.scss'
 
