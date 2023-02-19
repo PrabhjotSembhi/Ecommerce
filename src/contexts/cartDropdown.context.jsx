@@ -3,16 +3,19 @@ import { createContext, useState } from "react";
 
 const addCartItem =(cartItems,productToAdd) => {
 
-    const {id} = productToAdd;
-    cartItems.map((item) => {
-    if(item.id === id){
-        item.quantity = item.quantity + 1;
-    }
-    if (item.id !== id) {
-        cartItems.push({...productToAdd, quantity: 1})
-    }
-   })
+  const exsistingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === productToAdd.id
+  )
 
+  if (exsistingCartItem) {
+    return cartItems.map((cartItem) =>
+    cartItem.id === productToAdd.id
+    ? {...cartItem, quantity: cartItem.quantity + 1}
+    : cartItem
+    )
+  }
+
+  return [...cartItems, {...productToAdd, quantity: 1}]
 }
 
 export const CartDropdownContext = createContext({
@@ -27,11 +30,11 @@ export const CardDropdownProvider = ({children}) =>{
     const [cartItems, setCartItems] = useState([])
 
     const addItemToCart = (productToAdd) => {
-        setCartItems(cartItems,productToAdd)
+        setCartItems(addCartItem(cartItems,productToAdd))
     }
     console.log(cartItems)
 
-    const value = { cartOpened, setCartOpened};
+    const value = { cartOpened, setCartOpened, addItemToCart, cartItems};
 
     return(
         <CartDropdownContext.Provider value={value}>

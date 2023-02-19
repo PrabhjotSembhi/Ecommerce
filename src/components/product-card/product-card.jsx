@@ -7,6 +7,8 @@ import { CartDropdownContext } from '../../contexts/cartDropdown.context';
 const ProductCard = ({product}) => {
     const {addItemToCart} = useContext(CartDropdownContext)
 
+    const addProductToCart = ()=>{addItemToCart(product)}
+
     const {name, price, imageUrl} = product;
  return (  <div className='product-card-container'>
         <img src={imageUrl} alt='h'/>
@@ -15,7 +17,7 @@ const ProductCard = ({product}) => {
             <span className="price">{price}</span>
 
         </div>
-        <Button buttonType='inverted' onClick={()=>{addItemToCart(product)}} >Add to cart</Button>
+        <Button buttonType='inverted' onClick={ addProductToCart } >Add to cart</Button>
     </div>)
 }
 
