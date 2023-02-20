@@ -1,12 +1,12 @@
 
 import { useContext } from 'react'
-import { CartDropdownContext } from '../../contexts/cartDropdown.context'
+import { CartContext } from '../../contexts/cart.context'
 import CartItem from '../../components/cart-item/CartItem'
 import Button from '../button/Button'
 import './cart-dropdown.styles.scss'
 
 const CartDropdown = () => {
-  const { cartItems, addItemToCart} = useContext(CartDropdownContext)
+  const { cartItems, addItemToCart} = useContext(CartContext)
 
 
   return (

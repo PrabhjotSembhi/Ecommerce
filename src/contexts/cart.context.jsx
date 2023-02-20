@@ -19,14 +19,14 @@ const addCartItem =(cartItems,productToAdd) => {
   return [...cartItems, {...productToAdd, quantity: 1}]
 }
 
-export const CartDropdownContext = createContext({
+export const CartContext = createContext({
     cartOpened:false,
     setCartOpened: () => {},
     cartItems:[],
     addItemToCart: () => {}
 })
 
-export const CardDropdownProvider = ({children}) =>{
+export const CardProvider = ({children}) =>{
     const [cartOpened, setCartOpened] = useState(false)
     const [cartItems, setCartItems] = useState([])
     const [cartCount, setCartCount] = useState(0)
@@ -49,9 +49,9 @@ export const CardDropdownProvider = ({children}) =>{
     const value = { cartOpened, setCartOpened, addItemToCart, cartItems,cartCount};
 
     return(
-        <CartDropdownContext.Provider value={value}>
+        <CartContext.Provider value={value}>
             {children}
-        </CartDropdownContext.Provider>
+        </CartContext.Provider>
     )
 
 }
