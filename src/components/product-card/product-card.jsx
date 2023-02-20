@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import './product-card.styles.scss'
 import Button from '../button/Button'
-import { CartDropdownContext } from '../../contexts/cartDropdown.context';
+import { CartContext } from '../../contexts/cart.context';
 
 
 const ProductCard = ({product}) => {
-    const {addItemToCart} = useContext(CartDropdownContext)
+    const {addItemToCart} = useContext(CartContext)
 
     const addProductToCart = ()=>{addItemToCart(product)}
 

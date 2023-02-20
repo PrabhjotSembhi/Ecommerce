@@ -4,6 +4,7 @@ import Home from "./routes/home/Home";
 import Navigation from "./routes/navigation/Navigation";
 import SignIn from "./routes/SignIn/SignIn";
 import Shop from "./routes/shop/Shop";
+import Checkout from "./routes/checkout/Checkout";
 
 
 
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<Home/>} />
         <Route path="/shop" element={<Shop/>} />
         <Route path="/auth" element={<SignIn/>} />
+        <Route path="/checkout" element={<Checkout/>} />
 
       </Route>
     </Routes>
