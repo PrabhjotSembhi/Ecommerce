@@ -32,7 +32,6 @@ export const CardDropdownProvider = ({children}) =>{
     const addItemToCart = (productToAdd) => {
         setCartItems(addCartItem(cartItems,productToAdd))
     }
-    console.log(cartItems)
 
     const value = { cartOpened, setCartOpened, addItemToCart, cartItems};
 
