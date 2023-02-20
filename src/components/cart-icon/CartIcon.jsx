@@ -3,18 +3,7 @@ import { CartDropdownContext } from '../../contexts/cartDropdown.context'
 import { ReactComponent as ShopingIcon } from '../../assets/shopping-bag.svg'
 import './cart-icon.styles.scss'
 const CartIcon = () => {
-const {cartOpened, setCartOpened, cartItems} = useContext(CartDropdownContext)
-
-let i = 0
-const addquantity = (quantity) => {
-   i = i + quantity
-   console.log(i)
-
-}
-
-cartItems.map((item) => 
-  addquantity(item.quantity)
-)
+const {cartOpened, setCartOpened, cartCount} = useContext(CartDropdownContext)
 
 
   return (
@@ -22,7 +11,7 @@ cartItems.map((item) =>
         <ShopingIcon className='shopping-icon' onClick={() => {setCartOpened(!cartOpened)}}/>
       
 
-        <span className='item-count'>{`${i}`}</span>
+        <span className='item-count'>{cartCount}</span>
     
     </div>
   )
