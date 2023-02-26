@@ -4,7 +4,7 @@ import { CartContext } from '../../contexts/cart.context'
 const CheckoutItem = ({CheckoutItem}) => {
   
   const {name, imageUrl, price, quantity} = CheckoutItem
-  const { removeCartItem } = useContext(CartContext);
+  const { removeCartItem, increaseQuantity2 } = useContext(CartContext);
 
   return (
     <div>
@@ -12,13 +12,13 @@ const CheckoutItem = ({CheckoutItem}) => {
 \
       <h3 className=''>{name}</h3>
 
-      <button>Increase</button>
+      <button onClick={() => increaseQuantity2(CheckoutItem)} >Increase</button>
       <span className=''>{quantity}</span>
       <button>Decrease</button>
 
 
       <span className=''> ${price}</span>
-      <button onClick={() => removeCartItem(CheckoutItem)}>Remove</button>
+      <button onClick={() =>  removeCartItem(CheckoutItem)}>Remove</button>
 
     </div>
   )

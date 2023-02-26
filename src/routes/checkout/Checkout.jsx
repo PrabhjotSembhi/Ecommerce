@@ -6,7 +6,6 @@ const Checkout = () => {
 
   const { cartItems } = useContext(CartContext);
 
-  console.log(cartItems)
 
 
   return (
