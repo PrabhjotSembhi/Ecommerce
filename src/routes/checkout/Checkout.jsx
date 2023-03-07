@@ -4,7 +4,7 @@ import { CartContext } from '../../contexts/cart.context'
 import CheckoutItem from '../../components/checkout-item/CheckoutItem'
 const Checkout = () => {
 
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, total } = useContext(CartContext);
 
 
 
@@ -13,6 +13,8 @@ const Checkout = () => {
            {cartItems.map((item) => (
           <CheckoutItem key={item.id} CheckoutItem={item} />
         ))}
+
+        <h3>Total: ${total}</h3>
     </div>
   )
 }

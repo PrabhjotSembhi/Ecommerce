@@ -43,9 +43,9 @@ const removeItem = (cartItems, productToRemove) => {
 
 const productDecreament = (cartItems, productToDecrease) => {
   return cartItems.map((cartItem) =>
-    cartItem.id === productToDecrease.id && cartItem.quantity > 1
+    cartItem.id === productToDecrease.id
       ? { ...cartItem, quantity: cartItem.quantity - 1 }
-      : removeItem(cartItems, productToDecrease)
+      : cartItem
   );
 };
 
@@ -60,6 +60,7 @@ export const CardProvider = ({ children }) => {
   const [cartOpened, setCartOpened] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
@@ -67,6 +68,16 @@ export const CardProvider = ({ children }) => {
       0
     );
     setCartCount(newCartCount);
+  }, [cartItems]);
+
+  useEffect(() => {
+    const subTotals = cartItems.map((item) => {
+      return item.price * item.quantity;
+    });
+
+    const grandTotal = subTotals.reduce((total, index) => total + index, 0);
+
+    setTotal(grandTotal);
   }, [cartItems]);
 
   console.log(cartItems);
@@ -86,8 +97,6 @@ export const CardProvider = ({ children }) => {
     setCartItems(productDecreament(cartItems, productToDecrease));
   };
 
-
-
   const value = {
     cartOpened,
     setCartOpened,
@@ -96,7 +105,8 @@ export const CardProvider = ({ children }) => {
     cartCount,
     removeCartItem,
     IncreaseQuantity,
-    DecreaseQuantity
+    DecreaseQuantity,
+    total
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
