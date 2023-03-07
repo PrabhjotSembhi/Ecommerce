@@ -17,6 +17,21 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
+const productInceament = (cartItems, productToIncease) => {
+  /*/ const exsistingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === productToIncease.id
+  );
+
+  if (exsistingCartItem) {*/
+  return cartItems.map((cartItem) =>
+    cartItem.id === productToIncease.id
+      ? { ...cartItem, quantity: cartItem.quantity + 1 }
+      : cartItem
+  );
+  /* }
+
+  return [...cartItems];*/
+};
 
 const removeItem = (cartItems, productToRemove) => {
   const removeitemm = (cartItem, index) => {
@@ -26,16 +41,13 @@ const removeItem = (cartItems, productToRemove) => {
   return cartItems.filter(removeitemm);
 };
 
-const increaseQuantity = (cartItems, productToIncrease) =>{
-
-  const product = cartItems.find(
-    (cartItem) => cartItem.id === productToIncrease.id
+const productDecreament = (cartItems, productToDecrease) => {
+  return cartItems.map((cartItem) =>
+    cartItem.id === productToDecrease.id && cartItem.quantity > 1
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : removeItem(cartItems, productToDecrease)
   );
-
-  product.quantity++
-
-  return [...cartItems, {...productToIncrease}]
-}
+};
 
 export const CartContext = createContext({
   cartOpened: false,
@@ -48,7 +60,7 @@ export const CardProvider = ({ children }) => {
   const [cartOpened, setCartOpened] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
-  const [quantity, setIncreasedQuantity] = useState(0)
+
   useEffect(() => {
     const newCartCount = cartItems.reduce(
       (total, cartItem) => total + cartItem.quantity,
@@ -67,9 +79,14 @@ export const CardProvider = ({ children }) => {
     setCartItems(removeItem(cartItems, productToRemove));
   };
 
-  const increaseQuantity2 = ( productToIncrease ) =>{
-    setCartItems(increaseQuantity(cartItems, productToIncrease))
-  }
+  const IncreaseQuantity = (productToIncease) => {
+    setCartItems(productInceament(cartItems, productToIncease));
+  };
+  const DecreaseQuantity = (productToDecrease) => {
+    setCartItems(productDecreament(cartItems, productToDecrease));
+  };
+
+
 
   const value = {
     cartOpened,
@@ -78,7 +95,8 @@ export const CardProvider = ({ children }) => {
     cartItems,
     cartCount,
     removeCartItem,
-    increaseQuantity2
+    IncreaseQuantity,
+    DecreaseQuantity
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

@@ -4,17 +4,17 @@ import { CartContext } from '../../contexts/cart.context'
 const CheckoutItem = ({CheckoutItem}) => {
   
   const {name, imageUrl, price, quantity} = CheckoutItem
-  const { removeCartItem, increaseQuantity2 } = useContext(CartContext);
+  const { removeCartItem, IncreaseQuantity, DecreaseQuantity } = useContext(CartContext);
 
   return (
     <div>
          <img src={imageUrl} alt={`${name}` }/>
-\
+
       <h3 className=''>{name}</h3>
 
-      <button onClick={() => increaseQuantity2(CheckoutItem)} >Increase</button>
+      <button onClick={() => {IncreaseQuantity(CheckoutItem)}} >Increase</button>
       <span className=''>{quantity}</span>
-      <button>Decrease</button>
+      <button onClick={() =>  DecreaseQuantity(CheckoutItem)} >Decrease</button>
 
 
       <span className=''> ${price}</span>
